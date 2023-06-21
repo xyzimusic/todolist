@@ -1,22 +1,23 @@
 import React from 'react';
-import {FilterValuesType} from "./App";
-
+export type FilterType = 'all' | 'active' | 'completed';
 export type TaskType = {
-    id: number
-    title: string
+    taskId: number,
+    title: string,
     isDone: boolean
 }
-type PropsType = {
-    title: string
-    tasks: TaskType[]
-    removeTask: (id: number) => void
-    changeFilter: (id: FilterValuesType) => void
+export type PropsType = {
+    title: string,
+    tasks: TaskType[],
+    students: string[],
+    deleteTaskHandler: (taskId: number) => void
+    changeFilter: (value: FilterType) => void
 }
 
-const Todolist = ({title, tasks, removeTask, changeFilter}: PropsType) => {
+
+const Todolist = ({title, tasks, deleteTaskHandler, students, changeFilter}: PropsType) => {
     return (
-        <div>
-            <h3>{title}</h3>
+        <>
+            <h1>{title}</h1>
             <div>
                 <input/>
                 <button>+</button>
@@ -24,11 +25,11 @@ const Todolist = ({title, tasks, removeTask, changeFilter}: PropsType) => {
             <ul>
                 {tasks.map((item: TaskType) => {
                     return (
-                        <li key={item.id}>
-                            <input type="checkbox" checked={item.isDone}/>
+                        <li>
+                            <input type={"checkbox"} checked={item.isDone}/>
                             <span>{item.title}</span>
                             <button onClick={() => {
-                                removeTask(item.id)
+                                deleteTaskHandler(item.taskId)
                             }}>x
                             </button>
                         </li>
@@ -49,7 +50,17 @@ const Todolist = ({title, tasks, removeTask, changeFilter}: PropsType) => {
                 }}>Completed
                 </button>
             </div>
-        </div>
+
+            <ul>
+                {students.map((item: string) => {
+                    return (
+                        <li>
+                            <div>{item}</div>
+                        </li>
+                    )
+                })}
+            </ul>
+        </>
     );
 };
 
