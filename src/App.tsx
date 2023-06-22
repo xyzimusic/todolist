@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import Todolist, {TaskType} from "./Todolist";
+import Cars, {TopCarsType} from "./Cars";
 
 export type FilterValuesType = 'all' | 'completed' | 'active'
 
@@ -13,6 +14,13 @@ function App() {
         {id: 3, title: "ReactJS", isDone: false},
         {id: 4, title: "Redux", isDone: false},
     ])
+
+    const initTopCars = [
+        {manufacturer:'BMW', model:'m5cs'},
+        {manufacturer:'Mercedes', model:'e63s'},
+        {manufacturer:'Audi', model:'rs6'}
+    ]
+    let [topCars, setTopCars] = useState<TopCarsType[]>(initTopCars)
 
     function removeTask(id: number) {
         let filteredTasks = tasks.filter(item => item.id !== id)
@@ -39,6 +47,7 @@ function App() {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
             />
+            <Cars topCars ={topCars}/>
         </div>
     );
 }
