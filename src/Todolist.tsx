@@ -55,7 +55,7 @@ const Todolist = (props: PropsType) => {
             </div>
             <ul>
                 {tasks.map((item: TaskType) => {
-
+//
                     const onRemoveHandler = () => {
                         removeTask(item.id)
                     }
