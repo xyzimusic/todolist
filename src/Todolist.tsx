@@ -7,13 +7,15 @@ export type TaskType = {
     isDone: boolean
 }
 type PropsType = {
+    id:string
     todoListTitle: string
     tasks: TaskType[]
-    removeTask: (id: string) => void
-    changeFilter: (id: FilterValuesType) => void
-    addTask: (newTaskTitle: string) => void
-    changeStatus: (tId: string, isDone: boolean) => void
+    removeTask: (id: string, todoListId:string) => void
+    changeFilter: (id: FilterValuesType, todoListId:string) => void
+    addTask: (newTaskTitle: string, todoListId:string) => void
+    changeStatus: (tId: string, isDone: boolean, todoListId:string) => void
     filter: FilterValuesType
+    removeTodolist:(id:string)=>void
 }
 
 const Todolist = (props: PropsType) => {
@@ -41,20 +43,25 @@ const Todolist = (props: PropsType) => {
             setError('Title is required!')
             return
         }
-        addTask(newTaskTitle.trim())
+        addTask(newTaskTitle.trim(),props.id)
         setNewTaskTitle('')
     }
 
-    const onAllClickHandler = () => changeFilter('all')
+    const onAllClickHandler = () => changeFilter('all', props.id)
 
-    const onActiveClickHandler = () => changeFilter('active')
+    const onActiveClickHandler = () => changeFilter('active', props.id)
 
-    const onCompletedClickHandler = () => changeFilter('completed')
+    const onCompletedClickHandler = () => changeFilter('completed', props.id)
 
-
+    const removeTodolist =()=>{
+        props.removeTodolist(props.id)
+    }
     return (
         <div>
-            <h3>{todoListTitle}</h3>
+            <h3>
+                {todoListTitle}
+            <button onClick={removeTodolist}>x</button>
+            </h3>
             <div>
                 <input
                     className={error ? 'error' : ''}
@@ -71,11 +78,11 @@ const Todolist = (props: PropsType) => {
                 {tasks.map((item: TaskType) => {
 
                     const onRemoveHandler = () => {
-                        removeTask(item.id)
+                        removeTask(item.id,props.id)
                     }
                     const onChangeCheckBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         console.log(e.currentTarget.checked)
-                        props.changeStatus(item.id, e.currentTarget.checked)
+                        props.changeStatus(item.id, e.currentTarget.checked,props.id)
                     }
 
                     return (
