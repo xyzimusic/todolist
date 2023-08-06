@@ -77,7 +77,6 @@ function App() {
             todolist.filter = value
             setTodolists([...todolists])
         }
-
     }
 
     let todolistId1 = v1()
