@@ -16,7 +16,6 @@ test('correct todolist should be removed', () => {
     const startState: TodolistType[] = [
         {id: todolistId1, title: 'What to learn', filter: 'all'},
         {id: todolistId2, title: 'What to buy', filter: 'all'}
-
     ]
 
     const endState = todolistsReducer(startState, RemoveTodolistAC(todolistId1))
