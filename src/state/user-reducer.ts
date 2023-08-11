@@ -10,7 +10,6 @@ type ActionType = {
 }
 
 export const userReducer = (state: StateType, action: ActionType):StateType => {
-
     switch (action.type) {
         case 'INCREMENT-AGE':
             let newState = {...state}
