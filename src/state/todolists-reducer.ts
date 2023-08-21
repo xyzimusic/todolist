@@ -10,7 +10,7 @@ export type RemoveTodolistActionType = {
 export type AddTodolistActionType = {
     type: 'ADD-TODOLIST'
     title: string
-    todolistId:string
+    todolistId: string
 }
 
 export type ChangeTodolistTitleActionType = {
@@ -64,7 +64,7 @@ export let todolistId1 = v1()
 export let todolistId2 = v1()
 
 
-const initialState:TodolistType[] = [
+const initialState: TodolistType[] = [
     {id: todolistId1, title: 'What to learn', filter: 'all'},
     {id: todolistId2, title: 'What to buy', filter: 'all'}
 ]
@@ -81,7 +81,7 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
                 id: action.todolistId,
                 filter: 'all',
                 title: action.title
-            },...state]
+            }, ...state]
         }
 
 

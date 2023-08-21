@@ -1,6 +1,6 @@
 import {TasksStateType} from '../App'
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './tasks-reducer';
-import { addTodolistAC } from './todolists-reducer';
+import {addTodolistAC} from './todolists-reducer';
 
 test('correct task should be deleted fom correct array', () => {
     const startState: TasksStateType = {
@@ -113,10 +113,10 @@ test('newproperty with array shuould be added when new todolist is added', () =>
     const endState = tasksReducer(startState, action)
 
     const keys = Object.keys(endState)
-    const newKey = keys.find(k => k!= 'todolistId1'
-    && k!= 'todolistId2')
+    const newKey = keys.find(k => k != 'todolistId1'
+        && k != 'todolistId2')
 
-    if(!newKey){
+    if (!newKey) {
         throw new Error('new key should be added')
     }
 

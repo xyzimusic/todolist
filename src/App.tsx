@@ -140,10 +140,10 @@ function App() {
                 </Toolbar>
             </AppBar>
             <Container fixed>
-                <Grid container style ={{padding:'10px'}}>
+                <Grid container style={{padding: '10px'}}>
                     <AddItemForm addItem={addTodoList}></AddItemForm>
                 </Grid>
-                <Grid container spacing={3} >
+                <Grid container spacing={3}>
                     {
                         todolists.map((tl) => {
 
@@ -157,7 +157,7 @@ function App() {
                             }
 
                             return (<Grid item>
-                                    <Paper style =  {{padding:'10px'}}>
+                                    <Paper style={{padding: '10px'}}>
                                         <Todolist
                                             key={tl.id}
                                             id={tl.id}
