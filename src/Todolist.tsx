@@ -1,10 +1,12 @@
 import {Button, IconButton} from '@mui/material';
 import React, {useCallback, useState} from 'react';
-import {AddItemForm} from './AddItemForm';
-import {FilterValuesType} from './App';
+
 import {EditableSpan} from './EditableSpan';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Task} from './Task'
+import {FilterValuesType} from './App/App';
+import {AddItemForm} from './AddItemForm/AddItemForm';
+
 export type TaskType = {
     id: string
     title: string

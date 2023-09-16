@@ -2,7 +2,6 @@ import React, {useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
-import {AddItemForm} from './AddItemForm';
 import {AppBar, Container, Grid, IconButton, Paper} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,6 +9,7 @@ import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import {addTodolistAC, changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC, todolistsReducer} from './state/todolists-reducer';
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './state/tasks-reducer';
+import { AddItemForm } from './AddItemForm/AddItemForm';
 
 export type FilterValuesType = 'all' | 'completed' | 'active'
 
@@ -121,10 +121,10 @@ export function AppWithReducers() {
                             let tasksForTodoList = tasksObj[tl.id];
 
                             if (tl.filter === 'completed') {
-                                tasksForTodoList = tasksForTodoList.filter(t => t.isDone)
+                                tasksForTodoList = tasksForTodoList.filter((t: { isDone: boolean; }) => t.isDone)
                             }
                             if (tl.filter === 'active') {
-                                tasksForTodoList = tasksForTodoList.filter(t => !t.isDone)
+                                tasksForTodoList = tasksForTodoList.filter((t: { isDone: boolean; }) => !t.isDone)
                             }
 
                             return (<Grid item>

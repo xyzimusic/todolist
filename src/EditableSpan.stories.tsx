@@ -1,5 +1,6 @@
-import {AddItemForm} from './AddItemForm';
+
 import {action} from '@storybook/addon-actions'
+import { AddItemForm } from './AddItemForm/AddItemForm';
 import {EditableSpan} from './EditableSpan';
 
 export default {
