@@ -1,5 +1,5 @@
 import {useCallback} from 'react';
-import '../App.css';
+import '../../App.css';
 import {v1} from 'uuid';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootState} from '../../state/store';
