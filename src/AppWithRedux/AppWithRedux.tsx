@@ -6,16 +6,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import {AddItemForm} from '../AddItemForm/AddItemForm';
-import {TaskType, Todolist} from '../Todolist';
+import {Todolist} from '../Todolist';
 import {useAppWithRedux} from './hooks/useAppWithRedux';
+import {TaskType, TodolistType} from '../api/todolists-api';
 
-export type FilterValuesType = 'all' | 'completed' | 'active'
-
-export type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValuesType
-}
 
 export  type TasksStateType = {
     [key: string]: TaskType[]
@@ -61,7 +55,7 @@ export function AppWithRedux() {
                 </Grid>
                 <Grid container spacing={3}>
                     {
-                        todolists.map((tl: TodolistType) => {
+                        todolists.map(tl => {
 
                             let tasksForTodoList = tasksObj[tl.id];
 

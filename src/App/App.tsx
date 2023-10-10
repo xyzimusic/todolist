@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import {TaskType, Todolist} from '../Todolist';
+import {Todolist} from '../Todolist';
 import {AppBar, Container, Grid, IconButton, Paper} from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,19 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {useTodolists} from './hooks/useTodolists';
 import {useTasks} from './hooks/useTasks';
 import { AddItemForm } from '../AddItemForm/AddItemForm';
-
-export type FilterValuesType = 'all' | 'completed' | 'active'
-
-export type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValuesType
-}
+import {TaskStatuses, TaskType } from '../api/todolists-api';
 
 export  type TasksStateType = {
     [key: string]: TaskType[]
 }
-
 
 function App() {
 
@@ -75,10 +67,10 @@ function App() {
                             let tasksForTodoList = tasksObj[tl.id];
 
                             if (tl.filter === 'completed') {
-                                tasksForTodoList = tasksForTodoList.filter(t => t.isDone)
+                                tasksForTodoList = tasksForTodoList.filter(t => t.status === TaskStatuses.New)
                             }
                             if (tl.filter === 'active') {
-                                tasksForTodoList = tasksForTodoList.filter(t => !t.isDone)
+                                tasksForTodoList = tasksForTodoList.filter(t => t.status === TaskStatuses.Completed)
                             }
 
                             return (<Grid item>

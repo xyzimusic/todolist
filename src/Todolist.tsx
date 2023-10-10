@@ -1,17 +1,12 @@
 import {Button, IconButton} from '@mui/material';
 import React, {useCallback, useState} from 'react';
-
 import {EditableSpan} from './EditableSpan';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Task} from './Task'
-import {FilterValuesType} from './App/App';
 import {AddItemForm} from './AddItemForm/AddItemForm';
+import {TaskStatuses, TaskType } from './api/todolists-api';
+import { FilterValuesType } from './state/todolists-reducer';
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
 type PropsType = {
     id: string
     todoListTitle: string
@@ -19,12 +14,11 @@ type PropsType = {
     changeFilter: (id: FilterValuesType, todoListId: string) => void
     addTask: (newTaskTitle: string, todoListId: string) => void
     removeTask: (id: string, todoListId: string) => void
-    changeTaskStatus: (tId: string, isDone: boolean, todoListId: string) => void
+    changeTaskStatus: (tId: string, status: TaskStatuses, todoListId: string) => void
     onChangeTaskTitle: (tId: string, newTitle: string, todoListId: string) => void
     filter: FilterValuesType
     removeTodolist: (id: string) => void
     changeTodoListTitle: (id: string, newTitle: string) => void
-
 }
 
 export const Todolist = React.memo((props: PropsType) => {
@@ -40,7 +34,6 @@ export const Todolist = React.memo((props: PropsType) => {
     } = props
 
     const [newTaskTitle, setNewTaskTitle] = useState('')
-
 
     const onAllClickHandler = useCallback(
         () => changeFilter('all', props.id), [changeFilter, props.id])
@@ -63,10 +56,10 @@ export const Todolist = React.memo((props: PropsType) => {
 
     let tasksForTodoList = tasks
     if (filter === 'completed') {
-        tasksForTodoList = tasks.filter(t => t.isDone)
+        tasksForTodoList = tasks.filter(t => t.status === TaskStatuses.New)
     }
     if (filter === 'active') {
-        tasksForTodoList = tasks.filter(t => !t.isDone)
+        tasksForTodoList = tasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
     return (
